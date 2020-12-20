@@ -56,6 +56,27 @@ u_int64_t sort_selection(u_int8_t* sample, u_int64_t sample_len)
 }
 
 
+u_int64_t sort_insertion(u_int8_t* sample, u_int64_t sample_len)
+{
+    u_int64_t comp_count = 0;
+
+    for(int j = 0; j < sample_len; j++) {
+        for(int i = j; i < sample_len; i++) {
+            comp_count++;
+            if(sample[i] < sample[j]) {
+                int element = sample[i];
+                for(int n = i; n > j; n--) {
+                    sample[n] = sample[n - 1];
+                }
+                sample[j] = element;
+            }
+        }
+    }
+
+    return comp_count;
+}
+
+
 int main(int argc, char *argv[])
 {
 
@@ -85,6 +106,9 @@ int main(int argc, char *argv[])
     }
     else if(!strcmp("selection", argv[1])) {
         comp_count = sort_selection(sample, sample_len);
+    }
+    else if(!strcmp("insertion", argv[1])) {
+        comp_count = sort_insertion(sample, sample_len);
     }
     else {
         printf("Please specify algorithm [bubble|selection]\n");

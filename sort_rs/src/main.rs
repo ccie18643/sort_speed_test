@@ -66,11 +66,33 @@ fn sort_selection(sample: &mut Vec<u8>) -> u64 {
 }
 
 
+fn sort_insertion(sample: &mut Vec<u8>) -> u64 {
+
+    let sample_len = sample.len();
+    let mut comp_count = 0;
+    let mut element;
+
+    for j in 0..sample_len {
+        for i in j..sample_len {
+            comp_count += 1;
+            if sample[i] < sample[j] {
+                element = sample[i];
+                for n in (j + 1..i + 1).rev() {
+                    sample[n] = sample[n - 1];
+                }
+                sample[j] = element;
+            }
+        }
+    }
+    comp_count
+}
+
+
 fn main(){
 
     let args: Vec<String> = env::args().collect();
     if args.len() < 2 {
-        println!("Please specify algorithm [bubble|selection]");
+        println!("Please specify algorithm [bubble|selection|insertion]");
         std::process::exit(-1);
     }
 
@@ -90,8 +112,11 @@ fn main(){
     else if args[1] == "selection" {
         comp_count = sort_selection(&mut sample);
     }
+    else if args[1] == "insertion" {
+        comp_count = sort_insertion(&mut sample);
+    }
     else {
-        println!("Please specify algorithm [bubble|selection]");
+        println!("Please specify algorithm [bubble|selection|inserition]");
         std::process::exit(-3);
     }
 

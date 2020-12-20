@@ -82,7 +82,7 @@ def sort_selection(sample):
 
 
 def sort_insertion(sample):
-    """ Insertion sort - modified (left to right seek) """
+    """ Insertion sort """
 
     comp_count = 0
     sample_len = len(sample)
@@ -96,17 +96,18 @@ def sort_insertion(sample):
     return comp_count
 
 
-def _sort_insertion(sample):
-    """ Insertion sort - classic (right to left seek) """
+def sort_merge(sample):
+    """ Merge sort """
 
     comp_count = 0
-    sample_len = len(sample)
 
-    for j in range(sample_len):
-        for i in range(sample_len - 1, j, -1):
-            comp_count += 1
-            if sample[i] < sample[j]:
-                sample.insert(j, sample.pop(i))
+    return comp_count
+
+
+def sort_quick(sample)
+    """ Quick sort """
+
+    comp_count = 0
 
     return comp_count
 

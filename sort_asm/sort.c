@@ -11,12 +11,13 @@ typedef char byte;
 
 extern u_int64_t sort_bubble(byte*, u_int64_t);
 extern u_int64_t sort_selection(byte*, u_int64_t);
+extern u_int64_t sort_insertion(byte*, u_int64_t);
 
 int main(int argc, char *argv[])
 {
 
     if(argc < 2) {
-        printf("Please specify algorithm [bubble|selection]\n");
+        printf("Please specify algorithm [bubble|selection|insertion]\n");
         return -1;
     }
 
@@ -42,8 +43,11 @@ int main(int argc, char *argv[])
     else if(!strcmp("selection", argv[1])) {
         comp_count = sort_selection(sample, sample_len);
     }
+    else if(!strcmp("insertion", argv[1])) {
+        comp_count = sort_insertion(sample, sample_len);
+    }
     else {
-        printf("Please specify algorithm [bubble|selection]\n");
+        printf("Please specify algorithm [bubble|selection|insertion]\n");
         return -3;
     }
 
